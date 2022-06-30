@@ -3,6 +3,10 @@ import { StatusBar } from 'react-native'
 import { Home } from './src/pages/Home'
 
 export default function App() {
-  <StatusBar barStyle="dark-content" />
-  return <Home />;
+  return (
+    <>
+      <StatusBar barStyle="default" />
+      <Home />
+    </>
+  )
 }
