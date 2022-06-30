@@ -32,6 +32,12 @@ export function Home() {
     setMySkills(oldState => [...oldState, data]);
   }
 
+  function handleRemoveSkill(skillId: string){
+    setMySkills(oldState => oldState.filter(
+      skill => skill.id !== skillId 
+    ));
+  }
+
   useEffect(() => {
     const currentHour = new Date().getHours();
 
@@ -76,7 +82,10 @@ export function Home() {
         data={mySkills}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
-          <SkillCard skill={item.name} />
+          <SkillCard 
+          skill={item.name} 
+          onPress={( )=> handleRemoveSkill(item.id)}
+          />
         )}
       />
 
@@ -87,7 +96,7 @@ export function Home() {
 const styles = StyleSheet.create({
   containter: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 30,
     paddingVertical: 70,
     backgroundColor: '#121015'
   },
@@ -101,7 +110,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
     padding: Platform.OS === 'ios' ? 15 : 10,
-    marginTop: 20,
+    marginTop: 10,
     borderRadius: 7,
   },
   greetings: {
